@@ -1,0 +1,79 @@
+# Threat Detection & Authorization Policy Rules
+policy_version: "policy-v1.2"
+
+roles:
+  ALICE:
+    role_name: "SIGNER"
+    can_sign: true
+    can_verify: false
+    can_arbitrate: false
+  BOB:
+    role_name: "VERIFIER"
+    can_sign: false
+    can_verify: true
+    can_arbitrate: false
+  CHARLIE:
+    role_name: "ARBITRATOR"
+    can_sign: false
+    can_verify: true
+    can_arbitrate: true
+
+rate_limits:
+  max_verifications_per_minute: 120
+  max_session_burst: 30
+  latency_anomaly_threshold_ms: 1500.0
+
+detection_rules:
+  - id: "RULE-FORGERY"
+    threat: "Forgery Attempt"
+    condition: "mismatch_count > threshold_t"
+    action: "REJECT_AND_ALERT"
+    severity: "CRITICAL"
+
+  - id: "RULE-IMPERSONATION"
+    threat: "Signer Impersonation"
+    condition: "invalid_signer_identity or session_signature_invalid"
+    action: "BLOCK_PRE_QUANTUM"
+    severity: "CRITICAL"
+
+  - id: "RULE-REPLAY"
+    threat: "Replay Attack"
+    condition: "session_id_consumed or nonce_reused or resource_id_consumed"
+    action: "BLOCK_AND_LOG"
+    severity: "HIGH"
+
+  - id: "RULE-UNAUTHORIZED-VERIF"
+    threat: "Unauthorized Verification"
+    condition: "recipient_not_in_acl or session_expired"
+    action: "DENY_AND_ALERT"
+    severity: "HIGH"
+
+  - id: "RULE-PAULI-TAMPER"
+    threat: "Pauli Correction Tampering"
+    condition: "pauli_consistency_check_failed"
+    action: "REJECT_TRANSCRIPT"
+    severity: "CRITICAL"
+
+  - id: "RULE-CHANNEL-MITM"
+    threat: "Channel Manipulation / MITM"
+    condition: "qber_upper_bound > qber_epsilon_max"
+    action: "QUARANTINE_CHANNEL"
+    severity: "HIGH"
+
+  - id: "RULE-INTERCEPT-RESEND"
+    threat: "Intercept-Resend Eavesdropping"
+    condition: "basis_disagreement_rate > 0.20"
+    action: "ALERT_COMPROMISE"
+    severity: "CRITICAL"
+
+  - id: "RULE-ENTANGLEMENT-DISRUPTION"
+    threat: "Entanglement Disruption"
+    condition: "bell_fidelity < bell_fidelity_min"
+    action: "FLAG_RESOURCE_COMPROMISED"
+    severity: "HIGH"
+
+  - id: "RULE-DOS"
+    threat: "Denial of Service"
+    condition: "request_rate > max_verifications_per_minute or latency_ms > latency_anomaly_threshold_ms"
+    action: "RATE_LIMIT_AND_CLASSIFY"
+    severity: "MEDIUM"

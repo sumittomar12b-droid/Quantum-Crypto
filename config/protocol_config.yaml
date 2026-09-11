@@ -1,0 +1,24 @@
+# Protocol Configuration Parameters
+protocol:
+  name: "Yin et al. 3-Party Teleportation-Based QDS"
+  version: "teleportation-qds-v1.0"
+  signature_length_L: 200        # Default signature length
+  default_message: "SIH-2026-QUANTUM-DIGITAL-SIGNATURE-VERIFICATION"
+  
+quantum_channel:
+  bell_pair_type: "phi_plus"     # |Phi+> = (|00> + |11>) / sqrt(2)
+  bell_fidelity_F: 0.99          # Nominal Bell pair state fidelity
+  depolarizing_noise_epsilon: 0.03  # Default noise epsilon (honest channel)
+  loss_rate: 0.01
+
+thresholds:
+  q_honest: 0.05                 # Expected mismatch probability under honest execution
+  q_adv: 0.35                    # Minimal expected mismatch probability under attack
+  forgery_threshold_t: 30        # Default acceptance threshold for L=200 (t ~ L * 0.15)
+  qber_epsilon_max: 0.11         # Maximum allowed QBER before channel quarantine
+  bell_fidelity_min: 0.85        # Minimum acceptable Bell correlation fidelity
+  wilson_confidence_level: 0.99  # Statistical confidence bound level
+
+session:
+  default_ttl_seconds: 300       # 5 minutes session expiration
+  ml_kem_algorithm: "ML-KEM-768" # NIST Post-Quantum Standard FIPS 203

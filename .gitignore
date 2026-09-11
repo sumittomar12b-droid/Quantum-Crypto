@@ -1,0 +1,24 @@
+# Python virtual environment
+.venv/
+env/
+venv/
+ENV/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Pytest / coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Logs & temporary run files
+logs/*.jsonl
+logs/*.log
+/tmp/
+
+# OS artifacts
+.DS_Store
+Thumbs.db

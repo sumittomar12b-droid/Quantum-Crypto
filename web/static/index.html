@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quantum Cyber Threat Detection SOC — SIH 2026</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Outfit:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <!-- SOC Header -->
+  <header class="soc-header">
+    <div class="header-left">
+      <div class="logo-badge">
+        <span class="pulse-dot"></span>
+        <span class="logo-text">QUANTUM-SOC</span>
+      </div>
+      <div class="title-group">
+        <h1>Quantum Cyber Threat Detection</h1>
+        <p class="subtitle">Teleportation-Based QDS Protocol Defense &bull; ML-KEM-768 Classical Security &bull; SIH 2026</p>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="status-chip online" id="sys-status">
+        <span class="status-indicator"></span>
+        <span>DEFENSE GRID: ACTIVE</span>
+      </div>
+      <div class="status-chip crypto">
+        <span>PQC: ML-KEM-768 (FIPS 203)</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Threat Banner -->
+  <div id="threat-banner" class="threat-banner banner-idle">
+    <div class="banner-icon">🛡️</div>
+    <div class="banner-content">
+      <h3 id="banner-title">Quantum Channel Monitoring Active</h3>
+      <p id="banner-desc">Ready for signature distribution or attack simulation. Zero machine learning &bull; 100% deterministic statistical physics.</p>
+    </div>
+    <div class="banner-badge" id="banner-badge">ARMED</div>
+  </div>
+
+  <!-- Main Grid -->
+  <main class="soc-grid">
+    <!-- Left Column: Controls & Quantum Teleportation Visualizer -->
+    <section class="panel control-panel">
+      <div class="panel-header">
+        <h2>⚡ Protocol Execution & Attack Injection</h2>
+        <span class="chip">LAYER 2 & 4</span>
+      </div>
+
+      <div class="form-group">
+        <label>Simulation Scenario Mode:</label>
+        <select id="scenario-mode" class="cyber-select">
+          <option value="honest">🟢 Honest Protocol Run (Legitimate Alice & Bob)</option>
+          <option value="random_forger">🔴 Attack 01: Random Forgery (Eve Random Eigenstates)</option>
+          <option value="informed_forger">🔴 Attack 02: Informed Forgery (Partial Basis Knowledge)</option>
+          <option value="impersonation">🔴 Attack 03: Signer Impersonation (Mallory Identity Spoof)</option>
+          <option value="replay">🔴 Attack 04: Session & Transcript Replay Attack</option>
+          <option value="unauthorized_verifier">🔴 Attack 05: Unauthorized Verifier Violation</option>
+          <option value="pauli_tamper">🔴 Attack 06: Pauli Correction Bit Tampering (m1, m2)</option>
+          <option value="channel_disturbance">🔴 Attack 07: Quantum Channel Depolarizing Disturbance</option>
+          <option value="intercept_resend">🔴 Attack 08: Intercept-Resend Eavesdropping</option>
+          <option value="entanglement_disruption">🔴 Attack 09: Bell Entanglement Corruption</option>
+        </select>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group half">
+          <label>Signature Length ($L$ qubits):</label>
+          <input type="number" id="sig-length" value="200" min="50" max="1000" step="50" class="cyber-input">
+        </div>
+        <div class="form-group half">
+          <label>Acceptance Threshold ($t$):</label>
+          <input type="number" id="threshold-t" value="30" min="5" max="300" class="cyber-input">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Signer Payload Message:</label>
+        <input type="text" id="payload-message" value="SIH-2026-QUANTUM-DIGITAL-SIGNATURE-VERIFICATION" class="cyber-input">
+      </div>
+
+      <div class="action-buttons">
+        <button id="btn-execute" class="btn-cyber primary">▶ Execute Protocol Run</button>
+        <button id="btn-benchmark" class="btn-cyber secondary">⚡ Run 10-Attack Benchmark</button>
+      </div>
+
+      <!-- Teleportation Visualizer -->
+      <div class="visualizer-box">
+        <h3>Quantum Teleportation & Syndromes</h3>
+        <div class="teleport-diagram">
+          <div class="node-box alice">
+            <h4>Alice (Signer)</h4>
+            <div class="state-chip" id="alice-state">|ψ⟩ Eigenstate</div>
+            <div class="syndrome-chip" id="alice-syndrome">BSM: (m1, m2)</div>
+          </div>
+          <div class="channel-arrow">
+            <div class="quantum-wire"></div>
+            <span class="wire-label">|Φ+⟩ Bell EPR Wire</span>
+            <div class="classical-wire"></div>
+            <span class="wire-label pqc">ML-KEM-768 Encrypted m1,m2</span>
+          </div>
+          <div class="node-box bob">
+            <h4>Bob (Verifier)</h4>
+            <div class="state-chip" id="bob-correction">σ(m1,m2) Pauli Fix</div>
+            <div class="state-chip result" id="bob-decision">Status: Idle</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Right Column: Real-time Statistical Detection & QBER Metrics -->
+    <section class="panel metrics-panel">
+      <div class="panel-header">
+        <h2>📊 Statistical Threat Engine & QBER Bounds</h2>
+        <span class="chip">LAYER 3 (NON-AI)</span>
+      </div>
+
+      <div class="metrics-cards">
+        <div class="metric-card">
+          <span class="metric-label">Mismatch Count ($M$)</span>
+          <span class="metric-value" id="val-mismatches">0 / 200</span>
+          <span class="metric-sub" id="val-mismatch-rate">Rate: 0.0% (Limit: 15%)</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-label">Wilson 99% QBER UCB</span>
+          <span class="metric-value" id="val-qber">0.00%</span>
+          <span class="metric-sub" id="val-qber-status">Threshold: ε_max = 11.0%</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-label">Statistical Bound $P_{forge}$</span>
+          <span class="metric-value" id="val-pforge">&le; 10⁻⁶</span>
+          <span class="metric-sub">Binomial CDF Exact Bound</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-label">Bell Fidelity ($F$)</span>
+          <span class="metric-value" id="val-fidelity">0.990</span>
+          <span class="metric-sub">EPR Overlap: |⟨Φ⁺|Ψ⟩|²</span>
+        </div>
+      </div>
+
+      <!-- Live Chart -->
+      <div class="chart-wrapper">
+        <canvas id="threatChart"></canvas>
+      </div>
+
+      <!-- Report Downloads -->
+      <div class="download-section">
+        <h3>Generated Deliverable Reports</h3>
+        <div class="report-buttons">
+          <a href="/api/reports/download/security_pdf" target="_blank" class="report-btn">📄 Security Analysis PDF (D8)</a>
+          <a href="/api/reports/download/performance_pdf" target="_blank" class="report-btn">📈 Performance Benchmarks PDF (D9)</a>
+          <a href="/api/reports/download/attack_json" target="_blank" class="report-btn">📊 Attack Results JSON (D6)</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Bottom Panel: Tamper-Evident SHA3-256 Hash Chain Audit Feed -->
+  <footer class="panel audit-panel">
+    <div class="panel-header">
+      <h2>🔐 Tamper-Evident Hash-Chained Audit Trail (SHA3-256)</h2>
+      <div class="audit-status" id="audit-integrity">
+        <span class="badge-green">CHAIN INTEGRITY: VERIFIED</span>
+      </div>
+    </div>
+    <div class="audit-feed-wrapper">
+      <div class="audit-feed" id="audit-feed">
+        <!-- Live stream items inserted via app.js -->
+        <div class="audit-item">
+          <span class="audit-time">[2026-09-11 17:45:00 UTC]</span>
+          <span class="audit-type">GENESIS_INITIALIZATION</span>
+          <span class="audit-actor">SYSTEM</span>
+          <span class="audit-hash">Prev: 0000000000000000...</span>
+          <span class="audit-desc">Quantum Cyber Threat Detection SOC Engine initialized.</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
